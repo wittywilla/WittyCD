@@ -134,7 +134,7 @@ The client keeps a whole program to one request a second, as the service asks. S
 
 ## Credits
 
-Developed by WittyWilla as part of [WittyMediaServer](https://github.com/wittywilla/WittyMediaServer).
+Developed by WittyWilla for [WittyMediaServer](https://github.com/wittywilla/WittyMediaServer).
 Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). Disc IDs follow the method published by
 [MusicBrainz](https://musicbrainz.org/doc/Disc_ID_Calculation); this project isn't connected with them.
 
