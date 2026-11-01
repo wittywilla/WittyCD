@@ -215,11 +215,36 @@ func (d *Disc) openAudioFile(path string, bigEndian, declared bool) (audioFile, 
 			return audioFile{src: f, offset: off, size: length, bigEndian: big, declared: true}, nil
 		}
 	}
-	switch ext := strings.ToLower(filepath.Ext(path)); ext {
-	case ".mp3", ".ogg", ".oga", ".opus", ".m4a", ".aac", ".ape", ".wv", ".wma", ".tta", ".mpc":
-		return audioFile{}, fmt.Errorf("%w: its audio is in a %s file", ErrUnsupported, ext[1:])
+	if ext := strings.ToLower(filepath.Ext(path)); foreignAudioExt(ext) {
+		if ForeignAudio == nil {
+			return audioFile{}, fmt.Errorf("%w: its audio is in a %s file", ErrUnsupported, ext[1:])
+		}
+		// This package reads WAV, AIFF and FLAC itself. Its host turns anything else
+		// into FLAC, and it's read as that. Never a chain: the answer must be FLAC.
+		flac, err := ForeignAudio(path)
+		if err != nil {
+			return audioFile{}, fmt.Errorf("%w: its audio is in a %s file that can't be read: %v", ErrUnsupported, ext[1:], err)
+		}
+		if !strings.EqualFold(filepath.Ext(flac), ".flac") {
+			return audioFile{}, fmt.Errorf("%w: its audio is in a %s file", ErrUnsupported, ext[1:])
+		}
+		return d.openAudioFile(flac, bigEndian, declared)
 	}
 	return audioFile{src: f, size: size, bigEndian: bigEndian, declared: declared}, nil
+}
+
+// ForeignAudio, when set, gives a FLAC file of CD audio for a sound file in a format
+// this package doesn't read itself, so that a cue sheet can split it into tracks. It may
+// take a while the first time. The server sets it, since it has FFmpeg and a cache.
+var ForeignAudio func(path string) (flac string, err error)
+
+// foreignAudioExt: a sound file only ForeignAudio can read.
+func foreignAudioExt(ext string) bool {
+	switch ext {
+	case ".mp3", ".ogg", ".oga", ".opus", ".m4a", ".m4b", ".aac", ".ape", ".wv", ".wma", ".tta", ".mpc", ".dsf", ".dff", ".tak", ".mka", ".ac3", ".dts", ".alac":
+		return true
+	}
+	return false
 }
 
 // wavData finds the samples in a WAV file, which must be CD audio: anything else

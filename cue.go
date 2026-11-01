@@ -310,7 +310,13 @@ func capitalize(s string) string {
 // sameNameAudio finds the audio beside a sheet when the name inside it is stale.
 func sameNameAudio(sheet string) string {
 	base := strings.TrimSuffix(sheet, filepath.Ext(sheet))
-	return firstExisting(base+".bin", base+".wav", base+".img", base+".flac", base+".BIN", base+".WAV", base+".IMG", base+".FLAC")
+	if p := firstExisting(base+".bin", base+".wav", base+".img", base+".flac", base+".BIN", base+".WAV", base+".IMG", base+".FLAC"); p != "" {
+		return p
+	}
+	if ForeignAudio != nil {
+		return firstExisting(base+".ape", base+".wv", base+".m4a", base+".tta", base+".mp3", base+".ogg", base+".wma", base+".opus", base+".APE", base+".WV", base+".M4A", base+".MP3")
+	}
+	return ""
 }
 
 // fileSegments lists where, in one file, the sector size changes.
