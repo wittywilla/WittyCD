@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"strings"
 	"sync"
 
 	"github.com/wittywilla/wittycd"
@@ -48,17 +49,18 @@ type opened struct {
 
 func (h *helper) handle(method string, raw json.RawMessage) (any, []byte, error) {
 	var p struct {
-		Path       string `json:"path"`
-		Tracks     []int  `json:"tracks"`
-		Whole      bool   `json:"whole"`
-		Loops      int    `json:"loops"`
-		Deemphasis bool   `json:"deemphasis"`
-		ID         int    `json:"id"`
-		Off        int64  `json:"off"`
-		N          int    `json:"n"`
-		Start      int64  `json:"start"`
-		From       int    `json:"from"`
-		Sectors    int    `json:"sectors"`
+		Path       string            `json:"path"`
+		Foreign    map[string]string `json:"foreign"`
+		Tracks     []int             `json:"tracks"`
+		Whole      bool              `json:"whole"`
+		Loops      int               `json:"loops"`
+		Deemphasis bool              `json:"deemphasis"`
+		ID         int               `json:"id"`
+		Off        int64             `json:"off"`
+		N          int               `json:"n"`
+		Start      int64             `json:"start"`
+		From       int               `json:"from"`
+		Sectors    int               `json:"sectors"`
 	}
 	if len(raw) > 0 {
 		if err := json.Unmarshal(raw, &p); err != nil {
@@ -66,7 +68,20 @@ func (h *helper) handle(method string, raw json.RawMessage) (any, []byte, error)
 		}
 	}
 	if method == "open" {
+		// A sound file this package can't read is made into FLAC by the server, which has FFmpeg.
+		// This asks for what's missing, and is asked again with it.
+		var missing []string
+		wittycd.ForeignAudio = func(path string) (string, error) {
+			if f, ok := p.Foreign[path]; ok {
+				return f, nil
+			}
+			missing = append(missing, path)
+			return "", errors.New("the server hasn't made this yet")
+		}
 		d, err := wittycd.Open(p.Path)
+		if err != nil && len(missing) > 0 {
+			return nil, nil, &wittymodule.CallError{Code: "needs-flac", Message: strings.Join(missing, "\n")}
+		}
 		if err != nil {
 			return nil, nil, coded(err)
 		}
