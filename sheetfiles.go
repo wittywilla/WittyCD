@@ -55,11 +55,14 @@ func SheetFiles(path string) (files []string, image bool) {
 			continue
 		}
 		seen[p] = true
-		switch strings.ToLower(filepath.Ext(p)) {
-		case ".flac":
+		switch ext := strings.ToLower(filepath.Ext(p)); {
+		case ext == ".flac":
 			compressed++
-		case ".mp3", ".ogg", ".oga", ".opus", ".m4a", ".aac", ".ape", ".wv", ".wma", ".tta", ".mpc":
-			return nil, false
+		case foreignAudioExt(ext):
+			if ForeignAudio == nil {
+				return nil, false
+			}
+			compressed++
 		}
 		files = append(files, p)
 	}
