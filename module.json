@@ -1,19 +1,20 @@
 {
   "id": "wittycd",
   "name": "WittyCD",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "Apache-2.0",
   "repo": "wittywilla/WittyCD",
-  "delivery": "builtin",
-  "api": 1,
-  "minServer": "0.5.0-alpha",
-  "maxServer": "0.5.x",
+  "delivery": "helper",
+  "api": 3,
+  "minServer": "0.6.0-alpha",
+  "maxServer": "0.6.x",
   "group": "discs",
   "summary": "Audio CD images played as discs: gapless, with their tracks, indexes and CD-TEXT, in a CD player.",
   "libraries": [
     "music",
     "discs"
   ],
-  "updates": "Reading CD images, disc IDs, CD-TEXT and the lossless stream.",
-  "stays": "The CD player page and looking discs up online."
+  "updates": "All of the engine: reading images, playing them as one stream, and its FLAC encoder.",
+  "stays": "Finding names for a disc online, and how a library shows it, stay with the server.",
+  "entry": "wittycd-module"
 }
