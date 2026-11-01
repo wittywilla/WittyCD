@@ -79,7 +79,7 @@ func (h *helper) handle(method string, raw json.RawMessage) (any, []byte, error)
 			return "", errors.New("the server hasn't made this yet")
 		}
 		d, err := wittycd.Open(p.Path)
-		if err != nil && len(missing) > 0 {
+		if len(missing) > 0 {
 			return nil, nil, &wittymodule.CallError{Code: "needs-flac", Message: strings.Join(missing, "\n")}
 		}
 		if err != nil {
