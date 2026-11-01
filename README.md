@@ -20,7 +20,7 @@ It doesn't read these:
 
 CCD and NRG are tested against images built to their published descriptions, not against dumps from the original programs. CHD and TOC are checked against the real tools.
 
-How to use it is in **Help** inside WittyMediaServer: see the music guide.
+How to use it is in **Help** inside WittyMediaServer: see Music, audiobooks and podcasts.
 
 ## How to get it
 
