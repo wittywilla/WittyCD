@@ -77,6 +77,8 @@ func (h *helper) handle(method string, raw json.RawMessage) (any, []byte, error)
 		return nil, nil, &wittymodule.CallError{Code: "bad-call", Message: "no image is open"}
 	}
 	switch method {
+	case "diagnose":
+		return h.diagnose()
 	case "stream":
 		tracks := p.Tracks
 		if p.Whole {
@@ -147,6 +149,40 @@ func (h *helper) handle(method string, raw json.RawMessage) (any, []byte, error)
 		return nil, b, nil
 	}
 	return nil, nil, &wittymodule.CallError{Code: "unknown-method", Message: fmt.Sprintf("this version has no %q", method)}
+}
+
+// diagnose reads every track, reporting as it goes.
+func (h *helper) diagnose() (any, []byte, error) {
+	j := &wittymodule.DiagJob{}
+	d := h.disc
+	j.SetLabel("Audio CD")
+	j.Step("Reading every track", 0.05)
+	r := d.Check(func(done float64) bool {
+		j.Progress(0.05 + done*0.9)
+		return true
+	})
+	j.Add(wittymodule.DiagFinding{Severity: wittymodule.DiagOK, Title: "This is an audio CD image",
+		What: fmt.Sprintf("%d audio tracks, %s long, in %s form. It belongs in a Music library.", len(d.AudioTracks()), hms(r.Facts.DurationSec), d.Format)})
+	for _, f := range r.Findings {
+		sev := wittymodule.DiagOK
+		switch f.Severity {
+		case wittycd.SeverityNote:
+			sev = wittymodule.DiagInfo
+		case wittycd.SeverityProblem:
+			sev = wittymodule.DiagProblem
+		}
+		title := "The disc"
+		if f.Track > 0 {
+			title = fmt.Sprintf("Track %d", f.Track)
+		}
+		j.Add(wittymodule.DiagFinding{Severity: sev, Title: title, What: f.Text})
+	}
+	return nil, nil, nil
+}
+
+func hms(sec float64) string {
+	s := int(sec + 0.5)
+	return fmt.Sprintf("%d:%02d:%02d", s/3600, s/60%60, s%60)
 }
 
 func (h *helper) stream(id int) *wittycd.Stream {
