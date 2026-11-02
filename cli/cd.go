@@ -1,5 +1,4 @@
-// Package cli is the WittyCD command line, used by the standalone wittycd tool
-// and by `wms cd`.
+// Package cli is the command line of the standalone wittycd tool.
 package cli
 
 import (
