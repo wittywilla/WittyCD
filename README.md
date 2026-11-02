@@ -2,6 +2,14 @@
 
 Plays images of audio CDs in WittyMediaServer the way a CD player does: one continuous program, with no gap between tracks. You need it if you keep CD images in a music or disc library.
 
+<!-- pictures -->
+
+![An audio CD image playing on the CD screen](docs/images/cd-player.webp)
+
+<sub>A CD image authored for testing from Jazz Sampler, Kevin MacLeod, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).</sub>
+
+<!-- /pictures -->
+
 ## What it does
 
 - **Reads images:** `.cue` with `.bin`, `.wav`, `.aiff` or a single `.flac`; `.toc`; `.ccd` with `.img`; `.nrg`; `.chd`; and a bare `.iso`, `.img` or `.bin` that is really audio.
