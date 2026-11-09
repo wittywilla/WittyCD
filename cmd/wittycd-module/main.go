@@ -1,3 +1,21 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+//
+// WittyCD - Audio CD images played as discs: gapless, with their tracks, indexes and CD-TEXT, in a CD player.
+// Copyright (C) 2026 WittyWilla and contributors
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program. If not, see <https://www.gnu.org/licenses/>.
+
 // Command wittycd-module is WittyCD as a helper process: the only way a server reaches it. One
 // process has one open image, and answers one call at a time. Samples go a chunk at a time,
 // and FLAC is encoded here, so whatever an image holds meets nothing but this process's limits.

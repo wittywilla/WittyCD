@@ -88,7 +88,7 @@ To use it as a library, `wittycd.Open` gives a `Disc`. `NewStream`, `TrackStream
 
 ## Licence
 
-Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, keep the NOTICE attribution. It contains no code from GPL libraries. Disc IDs follow the method published by [MusicBrainz](https://musicbrainz.org/doc/Disc_ID_Calculation), which isn't connected with this project. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
+GNU Affero General Public License v3.0 (or later): see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, please keep the NOTICE attribution. It contains no code from GPL libraries. Disc IDs follow the method published by [MusicBrainz](https://musicbrainz.org/doc/Disc_ID_Calculation), which isn't connected with this project. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
 
 ## Legal
 
@@ -119,5 +119,5 @@ To release:
 
 To take a version back, run the *withdraw* workflow from the *Actions* tab. It adds the version to a signed list on the release tagged `withdrawals`, which servers read.
 
-Licensed under Apache-2.0: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
+Licensed under AGPL-3.0-or-later: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 <!-- /module-kit -->
