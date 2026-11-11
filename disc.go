@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 WittyWilla and contributors
+
 // Package wittycd reads images of audio CDs and plays them the way a CD player
 // does: one continuous program area, with tracks, indexes and pregaps as places
 // in it rather than as separate files. That is what makes it gapless, and what
