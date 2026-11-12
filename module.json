@@ -1,13 +1,13 @@
 {
   "id": "wittycd",
   "name": "WittyCD",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "AGPL-3.0-or-later",
   "repo": "wittywilla/WittyCD",
   "delivery": "helper",
   "api": 3,
   "minServer": "0.6.0-alpha",
-  "maxServer": "0.6.x",
+  "maxServer": "0.8.x",
   "group": "discs",
   "summary": "Audio CD images played as discs: gapless, with their tracks, indexes and CD-TEXT, in a CD player.",
   "libraries": [
