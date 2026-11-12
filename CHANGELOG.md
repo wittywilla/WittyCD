@@ -5,6 +5,7 @@ What changed in WittyCD, newest first. What changed before it had a repository o
 
 ## Unreleased
 
+- **WittyCD 0.2.1:** built for module API 4: it carries `sdui.json` (its theme scope, for the theme editor), kept equal to `UI()` by a test. Its pages stay the server's own disc pages.
 - **WittyCD 0.2.1:** for servers up to 0.8.x. Relicensed to AGPL-3.0-or-later, with the licence header on every source file.
 - A helper, `wittycd-module`, is now how a server reaches WittyCD, with no copy compiled in.
 - A cue sheet can split a sound file in any format: a host with FFmpeg sets `ForeignAudio` to make FLAC of what this package doesn't read itself.
