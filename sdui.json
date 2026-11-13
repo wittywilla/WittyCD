@@ -2,7 +2,7 @@
   "format": "wittymodule-sdui",
   "formatVersion": 1,
   "module": "wittycd",
-  "catalog": 2,
+  "catalog": 8,
   "theme": {
     "scope": "wittycd",
     "label": "Audio CDs"
