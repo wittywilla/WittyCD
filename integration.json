@@ -1,0 +1,57 @@
+{
+  "format": "wittymodule-integration",
+  "formatVersion": 1,
+  "module": "wittycd",
+  "host": {
+    "http": ">=1",
+    "web": ">=5",
+    "sdui": ">=8",
+    "host": ">=1"
+  },
+  "http": [
+    {
+      "path": "/cds/{id}/matches",
+      "methods": [
+        "GET"
+      ],
+      "auth": "admin",
+      "item": "id",
+      "limits": {
+        "time": "45s"
+      }
+    },
+    {
+      "path": "/cds/{id}/identify",
+      "methods": [
+        "POST"
+      ],
+      "auth": "admin",
+      "item": "id",
+      "limits": {
+        "body": "4KB",
+        "time": "45s"
+      }
+    }
+  ],
+  "web": {
+    "routes": [
+      {
+        "path": "/cd/:id",
+        "frame": "app"
+      }
+    ],
+    "players": [
+      {
+        "mediaKind": "cd"
+      }
+    ]
+  },
+  "sdui": {
+    "ops": [
+      {
+        "id": "wittycd.identify",
+        "http": "POST /cds/{id}/identify"
+      }
+    ]
+  }
+}

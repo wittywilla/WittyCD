@@ -19,6 +19,8 @@
 // Command wittycd-module is WittyCD as a helper process: the only way a server reaches it. One
 // process has one open image, and answers one call at a time. Samples go a chunk at a time,
 // and FLAC is encoded here, so whatever an image holds meets nothing but this process's limits.
+// Started as WittyCD's service (module API 5), the same program answers its routes and SDUI
+// source instead, and opens no image.
 // See WittyModule for the protocol.
 package main
 
@@ -32,12 +34,14 @@ import (
 	"sync"
 
 	"github.com/wittywilla/wittycd"
+	"github.com/wittywilla/wittycd/api"
 	"github.com/wittywilla/wittymodule"
 )
 
 func main() {
 	h := &helper{streams: map[int]*wittycd.Stream{}, flacs: map[int]*flac{}}
-	wittymodule.Main(wittycd.ManifestJSON, h.handle)
+	// The same program is WittyCD's service too (module API 5): see api.Dual.
+	wittymodule.Main(wittycd.ManifestJSON, (&api.Dual{Helper: h.handle}).Handle)
 }
 
 // maxRead is more than a server asks for at once.

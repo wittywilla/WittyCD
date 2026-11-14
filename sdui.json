@@ -6,5 +6,89 @@
   "theme": {
     "scope": "wittycd",
     "label": "Audio CDs"
-  }
+  },
+  "pages": [
+    {
+      "id": "wittycd-identify",
+      "kind": "custom",
+      "title": "Find this album",
+      "icon": "disc",
+      "description": "Find which album an audio CD is, for an administrator, on every app: opened with ?item=<the disc's id>.",
+      "scope": "wittycd",
+      "sections": [
+        {
+          "id": "intro",
+          "component": "Text",
+          "props": {
+            "text": "Choose the album this disc is. Its tracks take that album's names and cover; nothing about the disc's files changes."
+          }
+        },
+        {
+          "id": "matches",
+          "component": "List",
+          "props": {
+            "empty": "message",
+            "emptyText": "Nobody has told MusicBrainz about this disc yet, so it keeps the names it came with.",
+            "focusable": true,
+            "title": "Matches"
+          },
+          "source": {
+            "item": "$item",
+            "type": "wittycd.matches"
+          }
+        },
+        {
+          "id": "credit",
+          "component": "Notice",
+          "props": {
+            "text": "Album data from MusicBrainz (CC0). Covers from the Cover Art Archive.",
+            "tone": "info"
+          }
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "type": "wittycd.matches",
+      "label": "What this disc could be",
+      "description": "For an administrator: the albums MusicBrainz has for a disc's table of contents, each choosing its names and cover, and a row going back to the disc's own names. Only the table of contents is sent.",
+      "icon": "search",
+      "category": "",
+      "params": [
+        {
+          "name": "item",
+          "type": "ref",
+          "label": "Disc",
+          "help": "The disc's ID, $item on its page.",
+          "required": true,
+          "since": 0
+        }
+      ],
+      "yields": [
+        "view"
+      ],
+      "cardStyle": "tile",
+      "paged": false,
+      "title": "Matches",
+      "since": 8
+    }
+  ],
+  "commands": [
+    {
+      "op": "wittycd.identify",
+      "label": "Use these names",
+      "description": "Audio CDs: an administrator uses a MusicBrainz release's names and cover for a disc (item); params.release \"\" goes back to the disc's own names.",
+      "method": "POST",
+      "path": "/api/modules/wittycd/cds/{item}/identify",
+      "body": "{\"releaseId\":\"{release}\"}",
+      "params": [
+        {
+          "name": "release",
+          "type": "string",
+          "label": "MusicBrainz release"
+        }
+      ]
+    }
+  ]
 }

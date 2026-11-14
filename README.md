@@ -17,7 +17,8 @@ Plays images of audio CDs in WittyMediaServer the way a CD player does: one cont
 - **Plays without gaps.** A disc is one stream, and track changes are places in it. Chosen tracks and repeats play the same way.
 - **Streams FLAC or WAV.** WAV takes no encoding. FLAC uses its own small encoder.
 - **Corrects pre-emphasis** on flagged tracks, and gives the same samples when you seek as when you play through.
-- **Gets album details.** MusicBrainz and the Cover Art Archive are asked only by the disc's table of contents. Finding names online, and how a library shows a disc, stay with the server.
+- **Plays in a CD player.** In the web app it brings its own CD player page, and the disc keeps playing with the bar along the bottom when you leave it.
+- **Finds which album a disc is.** An admin chooses from what MusicBrainz knows, in the CD player or, on a TV or phone, on the page *Find this album*. Only the disc's table of contents is sent; the server does the asking and fetches the cover, so the process that reads an image never has a network.
 - **Reports problems.** An image whose audio is scrambled shows up as noise and is reported, and so is a DTS surround disc. Nothing is decrypted or bypassed.
 
 It doesn't read these:
@@ -32,11 +33,11 @@ How to use it is in **Help** inside WittyMediaServer: see Music, audiobooks and 
 
 ## How to get it
 
-An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyCD. That needs WittyMediaServer 0.6.0-alpha or later, and it works with nothing older. The range this version fits is in `module.json`: 0.6.0-alpha through 0.6.x.
+An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyCD. It's built for module API 5, so it needs a server that takes that; the range this version fits is in `module.json`.
 
 ## What it needs
 
-- [WittyModule](https://github.com/wittywilla/WittyModule), which is how a server talks to it, built in. Nothing else.
+- [WittyModule](https://github.com/wittywilla/WittyModule), which is how a server talks to it, built in, and its web kit to build the web part (`npm run build:bundle`, with `WITTYMODULE` naming a WittyModule checkout).
 - No music comes with it.
 
 It's written in Go with no cgo, from the publicly described formats.

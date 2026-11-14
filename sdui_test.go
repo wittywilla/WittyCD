@@ -29,8 +29,8 @@ func TestSDUIMatchesTheManifest(t *testing.T) {
 	if m.API < wittymodule.SDUIFromAPI {
 		t.Errorf("api %d: the manifest should be built for module API %d or newer", m.API, wittymodule.SDUIFromAPI)
 	}
-	// The helper answers neither sdui.items nor settings.changed.
-	if ui := UI(); len(ui.Sources) != 0 || len(ui.Settings) != 0 {
-		t.Error("UI() declares sources or settings: the helper must answer sdui.items or settings.changed first")
+	// Its service answers its one source, and it has no settings to hear about.
+	if ui := UI(); len(ui.Sources) != 1 || ui.Sources[0].Type != SourceMatches || len(ui.Settings) != 0 {
+		t.Error("UI() declares sources or settings the service doesn't answer")
 	}
 }

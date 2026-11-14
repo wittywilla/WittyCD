@@ -1,11 +1,11 @@
 {
   "id": "wittycd",
   "name": "WittyCD",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "license": "AGPL-3.0-or-later",
   "repo": "wittywilla/WittyCD",
   "delivery": "helper",
-  "api": 4,
+  "api": 5,
   "minServer": "0.8.0-alpha",
   "maxServer": "0.8.x",
   "group": "discs",
@@ -14,7 +14,9 @@
     "music",
     "discs"
   ],
-  "updates": "All of the engine: reading images, playing them as one stream, and its FLAC encoder.",
-  "stays": "Finding names for a disc online, and how a library shows it, stay with the server.",
-  "entry": "wittycd-module"
+  "updates": "All of the engine (reading images, playing them as one stream, its FLAC encoder), the CD player in the web app, and finding which album a disc is, on every app.",
+  "stays": "Asking MusicBrainz and fetching covers, the stream's FFmpeg conversion and how a library shows a disc stay with the server: the process that reads an image never has a network.",
+  "entry": "wittycd-module",
+  "webEntry": "index.js",
+  "webStyle": "style.css"
 }
