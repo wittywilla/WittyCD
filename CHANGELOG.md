@@ -3,6 +3,10 @@
 What changed in WittyCD, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.3.1
+
+- The first published release on module API 5, with the WittyModule 0.5.4 workflows. The tag v0.3.0 was made with workflows that couldn't build it and was never published.
+
 ## 0.3.0
 
 - **WittyCD 0.3.0: module API 5.** WittyCD owns the CD player: its page in the web app (`/cd/:id`, the web part's `register`), and the engine that plays a disc through the app's audio element (the app's audio-engine slot), moved from the server file for file. Finding which album a disc is has its own routes, `GET /api/modules/wittycd/cds/{id}/matches` and `POST /api/modules/wittycd/cds/{id}/identify` (administrators), which ask the server's host API: the server still asks MusicBrainz and fetches the cover, so the process that reads an image never has a network. On every app, the TV apps among them, the page `wittycd-identify` does the same, from its source `wittycd.matches` and its command `wittycd.identify`. The one program is both the helper for one image and the module's service. Built on WittyModule 0.5.4 and module API 5.
