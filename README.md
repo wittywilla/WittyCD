@@ -1,6 +1,6 @@
 # WittyCD
 
-Plays images of audio CDs in WittyMediaServer the way a CD player does: one continuous program, with no gap between tracks. You need it if you keep CD images in a music or disc library.
+Plays images of audio CDs in [WittyMediaServer](https://github.com/wittywilla/WittyMediaServer) the way a CD player does: one continuous program, with no gap between tracks. You need it if you keep CD images in a music or disc library. WittyMediaServer's site is https://wittymediaserver.com.
 
 <!-- pictures -->
 
@@ -31,9 +31,13 @@ CCD and NRG are tested against images built to their published descriptions, not
 
 How to use it is in **Help** inside WittyMediaServer: see Music, audiobooks and podcasts.
 
+## How it fits
+
+WittyCD is a module of WittyMediaServer: a helper program the server starts to read images, with a part in the browser for the CD player. Asking MusicBrainz and fetching covers, the stream's FFmpeg conversion and how a library shows a disc stay with the server, so the process that reads an image never has a network.
+
 ## How to get it
 
-An admin adds it from the module store inside WittyMediaServer: **Settings → Modules**, then **Browse the store**, then **Add** beside WittyCD. It's built for module API 5, so it needs a server that takes that; the range this version fits is in `module.json`.
+An admin adds it from the module store inside WittyMediaServer: **Settings → Modules → Browse the store → Add** beside WittyCD. This version is built for module API 5 and fits WittyMediaServer 0.8.0-alpha through 0.8.x (`minServer` and `maxServer` in [module.json](module.json)). A server takes module API 5 only, so nothing older works.
 
 ## What it needs
 
@@ -57,7 +61,13 @@ On macOS and FreeBSD the server has no sandbox for a module's helper: it gets a 
 
 ## Building and testing
 
-You need Go 1.26 or newer. In a worktree, first run the copy of `dev-modules.mjs` kept above the repositories (`node D:/projects/dev-modules.mjs` on the development machine). It writes a `go.work` that git ignores, so the checkout builds against the repositories beside it. Never run `go work use`.
+You need Go 1.26 or newer. To build against the repositories checked out beside it, run the copy of `dev-modules.mjs` kept above the repositories first. It writes a `go.work` that git ignores, so the checkout builds against the repositories beside it. Never run `go work use`. Without one, `go.mod`'s released versions are used, as in CI.
+
+What CI runs:
+
+```bash
+go run github.com/wittywilla/wittymodule/cmd/wittymodule@v0.5.4 check .
+```
 
 ```bash
 go vet ./...
@@ -68,10 +78,12 @@ go test ./... -count=1
 ```
 
 ```bash
-go run github.com/wittywilla/wittymodule/cmd/wittymodule check .
+npm ci
+npm test
+npm run build:bundle
 ```
 
-The last one checks the manifest. On the same tool, `pack -targets linux/amd64 -out release .` builds a release for one system. CI also builds for every system.
+The first one checks the manifest. On the same tool, `pack -targets linux/amd64 -out release .` builds a release for one system. CI also builds for every system. `npm run build:bundle` needs a WittyModule checkout at `../WittyModule`, or `WITTYMODULE` set to one.
 
 To look at an image by hand:
 
