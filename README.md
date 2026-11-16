@@ -103,16 +103,6 @@ To use it as a library, `wittycd.Open` gives a `Disc`. `NewStream`, `TrackStream
 
 GNU Affero General Public License v3.0 (or later): see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, please keep the NOTICE attribution. It contains no code from GPL libraries. Disc IDs follow the method published by [MusicBrainz](https://musicbrainz.org/doc/Disc_ID_Calculation), which isn't connected with this project. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
 
-## Legal
-
-WittyCD is an independent open-source project. It isn't associated with, sponsored by or endorsed by
-the owners of the Compact Disc format, any record label or artist, or MusicBrainz. It isn't a licensed
-Compact Disc product and uses no disc logo. It reads CD images you already have: no music comes with it,
-and you're responsible for having the rights to what you open. Album details come from the MusicBrainz
-and Cover Art Archive services, which are asked only by a disc's table of contents. Any third-party names
-here only describe what it works with, and belong to their owners. It's provided “as is”, with no
-warranty; see [LICENSE](LICENSE). Local law applies to how you use it. This isn't legal advice.
-
 <!-- module-kit -->
 ## Releasing
 
@@ -134,3 +124,13 @@ To take a version back, run the *withdraw* workflow from the *Actions* tab. It a
 
 Licensed under AGPL-3.0-or-later: see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 <!-- /module-kit -->
+
+## Legal
+
+WittyCD is an independent open-source project. It isn't associated with, sponsored by or endorsed by
+the owners of the Compact Disc format, any record label or artist, or MusicBrainz. It isn't a licensed
+Compact Disc product and uses no disc logo. It reads CD images you already have: no music comes with it,
+and you're responsible for having the rights to what you open. Album details come from the MusicBrainz
+and Cover Art Archive services, which are asked only by a disc's table of contents. Any third-party names
+here only describe what it works with, and belong to their owners. It's provided “as is”, with no
+warranty; see [LICENSE](LICENSE). Local law applies to how you use it. This isn't legal advice.
