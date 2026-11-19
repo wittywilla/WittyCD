@@ -249,6 +249,8 @@ func coded(err error) error {
 		code = "unsupported"
 	case errors.Is(err, fs.ErrPermission):
 		code = "denied"
+	case errors.Is(err, fs.ErrNotExist):
+		code = "missing"
 	}
 	return &wittymodule.CallError{Code: code, Message: err.Error()}
 }

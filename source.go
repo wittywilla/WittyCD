@@ -143,6 +143,10 @@ func resolveBeside(dir, name string) (string, error) {
 	if err != nil || st.IsDir() {
 		// Different letter case: a rip from Windows on a case-sensitive disk.
 		if p = matchName(filepath.Dir(p), filepath.Base(p)); p == "" {
+			// A rip encoded afterwards: the sheet says Album.wav, the folder has Album.flac.
+			p = otherSoundExt(filepath.Join(dir, rel))
+		}
+		if p == "" {
 			return "", fmt.Errorf("the file %q this image needs isn't in its folder: %w", filepath.Base(rel), os.ErrNotExist)
 		}
 		if st, err = os.Lstat(p); err != nil {
@@ -154,6 +158,25 @@ func resolveBeside(dir, name string) (string, error) {
 		return "", fmt.Errorf("a sheet names %q, a link to somewhere outside its folder", name)
 	}
 	return p, nil
+}
+
+// otherSoundExt finds a file beside a missing one with the same name and another sound
+// extension: rips are often encoded after the sheet is written, and the sheet keeps
+// saying .wav.
+func otherSoundExt(p string) string {
+	ext := strings.ToLower(filepath.Ext(p))
+	if ext != ".wav" && ext != ".flac" && ext != ".aif" && ext != ".aiff" && !foreignAudioExt(ext) {
+		return ""
+	}
+	base := strings.TrimSuffix(filepath.Base(p), filepath.Ext(p))
+	for _, e := range []string{".flac", ".wav", ".aiff", ".aif", ".ape", ".wv", ".m4a", ".alac", ".tta", ".tak"} {
+		if e != ext {
+			if m := matchName(filepath.Dir(p), base+e); m != "" {
+				return m
+			}
+		}
+	}
+	return ""
 }
 
 func staysInside(dir, p string) bool {
