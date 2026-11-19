@@ -111,3 +111,22 @@ func TestSheetCantLeaveThroughALinkedFolder(t *testing.T) {
 		t.Errorf("a file beside the sheet: %v", err)
 	}
 }
+
+// A sheet from a rip that was encoded afterwards still says .wav; the folder has .flac.
+func TestResolveBesideOtherSoundExtension(t *testing.T) {
+	dir := t.TempDir()
+	if err := os.WriteFile(filepath.Join(dir, "Album.flac"), []byte("x"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	p, err := resolveBeside(dir, "Album.wav")
+	if err != nil || filepath.Base(p) != "Album.flac" {
+		t.Fatalf("Album.wav beside Album.flac: %q, %v", p, err)
+	}
+	// Not for a file that isn't sound: a sheet's data file stays what it says.
+	if _, err := resolveBeside(dir, "Album.bin"); !errors.Is(err, os.ErrNotExist) {
+		t.Fatalf("Album.bin: %v", err)
+	}
+	if _, err := resolveBeside(dir, "Other.wav"); !errors.Is(err, os.ErrNotExist) {
+		t.Fatalf("Other.wav: %v", err)
+	}
+}

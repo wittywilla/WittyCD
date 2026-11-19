@@ -3,6 +3,10 @@
 What changed in WittyCD, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## Unreleased
+
+- A cue sheet that names a .wav the folder only has as .flac (or another sound file) plays that file, and a file a sheet names that is not there is answered with the code `missing`, so the server can pass over such a sheet quietly.
+
 ## 0.3.2
 
 - The README's pictures are retaken from WittyMediaServer 0.8.0-alpha.
