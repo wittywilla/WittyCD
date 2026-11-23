@@ -5,9 +5,7 @@ What changed in WittyCD, newest first. What changed before it had a repository o
 
 ## 0.3.2
 
-- A cue sheet that names a .wav the folder only has as .flac (or another sound file) plays that file, and a file a sheet names that is not there is answered with the code `missing`, so the server can pass over such a sheet quietly.
-
-- The README's pictures are retaken from WittyMediaServer 0.8.0-alpha.
+- **Fixed: CD rips with a cue sheet** play when the sheet names a .wav that the folder has as .flac or another sound file. A sheet naming a file that isn't there is skipped quietly.
 
 ## 0.3.1
 
