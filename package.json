@@ -1,6 +1,6 @@
 {
   "name": "@wittywilla/wittycd",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "description": "The browser half of WittyCD: the CD player in WittyMediaServer's web app.",
   "license": "AGPL-3.0-or-later",

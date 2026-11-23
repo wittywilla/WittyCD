@@ -3,6 +3,16 @@
 What changed in WittyCD, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.3.3
+
+- **No computer keys on a television.** In TV mode the CD player no longer lists the keyboard's shortcut keys. They still work, and a computer still lists them.
+
+## Developer notes for 0.3.3
+
+- `html.tv-mode .cdp-keyhelp` is hidden, as the server's TV mode does for its own key legends (docs/TV-MODE.md).
+- `readRawWindow` no longer takes an extent it never used; an unused `os.Lstat` result in `resolveBeside` is dropped (staticcheck SA4009, SA4006).
+- `scripts/test-web.mjs` imports the built bundle by file URL, so `npm test` also runs on Windows.
+
 ## 0.3.2
 
 - **Fixed: CD rips with a cue sheet** play when the sheet names a .wav that the folder has as .flac or another sound file. A sheet naming a file that isn't there is skipped quietly.

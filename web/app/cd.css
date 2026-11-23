@@ -166,6 +166,7 @@
 .cdp-credit, .cdp-keyhelp { font-size: var(--text-xs); margin: var(--sp-2) auto 0; max-width: 1180px; }
 .cdp-keyhelp kbd { font: inherit; padding: 0 4px; border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); border-radius: var(--r-xs); }
 @media (pointer: coarse), (max-width: 720px) { .cdp-keyhelp { display: none; } }
+html.tv-mode .cdp-keyhelp { display: none; } /* no computer keys on a television (TV-MODE.md) */
 
 /* Choosing which album it is. */
 .cdp-identify { width: min(640px, calc(100vw - 32px)); max-height: min(84vh, 760px); overflow-y: auto; display: grid; gap: var(--sp-3); }
