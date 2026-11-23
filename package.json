@@ -1,6 +1,6 @@
 {
   "name": "@wittywilla/wittycd",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "private": true,
   "description": "The browser half of WittyCD: the CD player in WittyMediaServer's web app.",
   "license": "AGPL-3.0-or-later",
@@ -13,7 +13,7 @@
   },
   "repository": "github:wittywilla/WittyCD",
   "devDependencies": {
-    "esbuild": "^0.27.7",
+    "esbuild": "^0.28.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.18.5",
