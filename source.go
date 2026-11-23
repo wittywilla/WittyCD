@@ -149,7 +149,7 @@ func resolveBeside(dir, name string) (string, error) {
 		if p == "" {
 			return "", fmt.Errorf("the file %q this image needs isn't in its folder: %w", filepath.Base(rel), os.ErrNotExist)
 		}
-		if st, err = os.Lstat(p); err != nil {
+		if _, err = os.Lstat(p); err != nil {
 			return "", err
 		}
 	}

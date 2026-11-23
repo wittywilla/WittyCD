@@ -53,7 +53,7 @@ func (d *Disc) inspectAudio() {
 		}
 		// Read as stored, so both byte orders can be judged.
 		n := len(buf)
-		if err := d.readRawWindow(e, lba, buf[:n]); err != nil {
+		if err := d.readRawWindow(lba, buf[:n]); err != nil {
 			continue
 		}
 		le, be, level := roughness(buf[:n])
@@ -105,9 +105,9 @@ func (d *Disc) inspectAudio() {
 }
 
 // readRawWindow reads sectors as they are stored, for judging the byte order.
-func (d *Disc) readRawWindow(e *extent, lba int, p []byte) error {
+func (d *Disc) readRawWindow(lba int, p []byte) error {
 	for len(p) > 0 {
-		e = d.extentAt(lba)
+		e := d.extentAt(lba)
 		if e == nil || e.src == nil {
 			clear(p)
 			return nil
