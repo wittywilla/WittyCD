@@ -13,7 +13,7 @@
   },
   "repository": "github:wittywilla/WittyCD",
   "devDependencies": {
-    "esbuild": "^0.27.7",
+    "esbuild": "^0.28.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.18.5",
