@@ -3,6 +3,10 @@
 What changed in WittyCD, newest first. What changed before it had a repository of its own is in the
 [WittyMediaServer changelog](https://github.com/wittywilla/WittyMediaServer/blob/master/CHANGELOG.md).
 
+## 0.3.4
+
+- **Updated dependencies:** esbuild from 0.27.7 to 0.28.2.
+
 ## 0.3.3
 
 - **No computer keys on a television.** In TV mode the CD player no longer lists the keyboard's shortcut keys. They still work, and a computer still lists them.
