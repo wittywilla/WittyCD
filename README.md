@@ -99,6 +99,8 @@ go run ./cmd/wittycd check "Album.cue"
 
 To use it as a library, `wittycd.Open` gives a `Disc`. `NewStream`, `TrackStream` and `RangeStream` give a stream readable at any offset by any number of readers, with `WriteFLAC` and `WAV`. `TOC` gives `MusicBrainzID`, `LookupString` and `CDDBID`. The `lookup` package asks MusicBrainz and the Cover Art Archive, and has an `Attribution` to show wherever the data is used.
 
+**Working on a Mac?** Start with WittyMediaServer's [MAC-START-HERE.md](https://github.com/wittywilla/WittyMediaServer/blob/v0.8.1-alpha/MAC-START-HERE.md): what to install, what to clone, and every Mac task in order: this module's is item 7.1 (wittywilla/WittyMediaServer#571).
+
 ## Licence
 
 GNU Affero General Public License v3.0 (or later): see [LICENSE](LICENSE) and [NOTICE](NOTICE). If you redistribute it or build on it, please keep the NOTICE attribution. It contains no code from GPL libraries. Disc IDs follow the method published by [MusicBrainz](https://musicbrainz.org/doc/Disc_ID_Calculation), which isn't connected with this project. Each release archive carries a `THIRD-PARTY-NOTICES.txt` for what its programs link.
